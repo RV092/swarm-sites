@@ -1,0 +1,154 @@
+# Workflow — Beautiful Websites Pipeline
+
+```mermaid
+graph TD
+    A[Utilisateur: Type + Ville + Quantité] --> B[Skill 1: Business Scraper]
+    B --> C{Apify Google Maps}
+    C --> D[Liste 50 entreprises]
+    D --> E{Filtrage auto}
+    E --> F[Email + Website requis]
+    F --> G[35 leads qualifiés]
+    
+    G --> H[Skill 2: Site Qualifier]
+    H --> I{Playwright Screenshot}
+    I --> J[Analyse LLM visuelle]
+    J --> K{Score < 5?}
+    K -->|Oui| L[18 sites à refaire]
+    K -->|Non| M[17 sites rejetés]
+    
+    L --> N[Skill 3: Website Redesigner]
+    N --> O[Scrape contenu existant]
+    O --> P[Recherche photos Unsplash]
+    P --> Q[Vérification photos]
+    Q --> R[Génération HTML moderne]
+    R --> S[Intégration Google Maps]
+    S --> T[18 sites HTML prêts]
+    
+    T --> U[Skill 4: Vercel Deployer]
+    U --> V{Vercel CLI}
+    V --> W[18 URLs live]
+    W --> X[💌 Prêt pour outreach]
+    
+    style A fill:#e1f5fe
+    style G fill:#c8e6c9
+    style L fill:#fff9c4
+    style T fill:#c8e6c9
+    style W fill:#4caf50,color:#fff
+    style X fill:#ff9800,color:#fff
+```
+
+---
+
+## 📊 Étapes Détaillées
+
+### Phase 1 — Scraper (2-5 min)
+
+| Action | Outil | Sortie |
+|--------|-------|--------|
+| Rechercher Google Maps | Apify | 50 entreprises |
+| Filtrer email + website | Auto | 35 leads |
+| Coût | — | ~0.20€ |
+
+---
+
+### Phase 2 — Qualifier (5-10 min)
+
+| Action | Outil | Sortie |
+|--------|-------|--------|
+| Screenshot full-page | Playwright | 35 images |
+| Analyse visuelle | LLM | Scores 0-10 |
+| Filtrer score < 5 | Auto | 18 candidats |
+| Coût | — | ~0.35€ |
+
+---
+
+### Phase 3 — Redesigner (10-20 min)
+
+| Action | Outil | Sortie |
+|--------|-------|--------|
+| Scrape contenu | Puppeteer | Texte + infos |
+| Photos Unsplash | API | 5 photos/site |
+| Génération HTML | LLM | 18 sites |
+| Google Maps | Embed API | Widgets |
+| Coût | — | ~0.90€ |
+
+---
+
+### Phase 4 — Déployer (2-5 min)
+
+| Action | Outil | Sortie |
+|--------|-------|--------|
+| Vérifier structure | Script | 18 dossiers OK |
+| Déployer Vercel | CLI | 18 URLs |
+| Coût | — | 0€ |
+
+---
+
+## ⏱️ Timing Total
+
+| Phase | Temps |
+|-------|-------|
+| Scraper | 2-5 min |
+| Qualifier | 5-10 min |
+| Redesigner | 10-20 min |
+| Déployer | 2-5 min |
+| **TOTAL** | **20-40 min** |
+
+---
+
+## 💰 Coût Total
+
+| Phase | Coût |
+|-------|------|
+| Scraper | 0.20€ |
+| Qualifier | 0.35€ |
+| Redesigner | 0.90€ |
+| Déployer | 0€ |
+| **TOTAL** | **~1.45€** |
+
+**ROI :** 18 sites $5000+ pour 1.45€
+
+---
+
+## 🔄 Automatisation
+
+### Schedule Quotidien (OpenClaw)
+
+```json
+{
+  "name": "beautiful-websites-daily",
+  "schedule": {
+    "kind": "cron",
+    "expr": "0 14 * * *"
+  },
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Run beautiful websites pipeline for [TYPE] in [VILLE], 50 businesses"
+  }
+}
+```
+
+### Variables à Personnaliser
+
+- `[TYPE]` → wedding venues, nail salons, restaurants...
+- `[VILLE]` → Sydney, Paris, Lyon...
+- `[QUANTITE]` → 50, 100...
+
+---
+
+## 📧 Extension — Outreach Automatisé
+
+```mermaid
+graph LR
+    A[18 URLs Vercel] --> B[Aggregation]
+    B --> C[Instantly / Lemlist]
+    C --> D[Emails automatisés]
+    D --> E[Réponses]
+    E --> F[Conversion]
+    
+    style F fill:#4caf50,color:#fff
+```
+
+---
+
+*Workflow Beautiful Websites — Pour PSYKO CORP*

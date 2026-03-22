@@ -1,0 +1,6 @@
+# URLs manuelles pour SWARM SITE
+# Format: une URL par ligne
+# Exemples:
+# https://business1.com
+# https://business2.com
+# https://business3.com

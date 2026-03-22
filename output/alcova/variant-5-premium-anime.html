@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcova — Ressourcez-vous | Premium Experience</title>
+    <meta name="description" content="Un lieu pour se ressourcer à Ham, en Picardie. Retrouvez votre clarté mentale.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sand: {
+                            50: '#faf9f7',
+                            100: '#f5f3ef',
+                            200: '#e8e4dd',
+                            300: '#d4cec4',
+                            400: '#a8a090',
+                            500: '#6b6560',
+                            600: '#4a4640',
+                            700: '#2d2a26',
+                        },
+                        sage: {
+                            400: '#8fb896',
+                            500: '#7a9e7e',
+                            600: '#5c7a5f',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Cormorant Garamond', 'serif'],
+                        'body': ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Base */
+        html { scroll-behavior: smooth; }
+        
+        /* Animations - Based on web-animation-design guidelines */
+        
+        /* Easing curves */
+        :root {
+            --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        /* Hero fade-in with stagger */
+        @keyframes fadeSlideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .animate-hero {
+            animation: fadeSlideUp 600ms var(--ease-out-quart) both;
+        }
+        
+        .animate-hero-delay-1 { animation-delay: 100ms; }
+        .animate-hero-delay-2 { animation-delay: 200ms; }
+        .animate-hero-delay-3 { animation-delay: 300ms; }
+        .animate-hero-delay-4 { animation-delay: 400ms; }
+        
+        /* Card entrance */
+        @keyframes cardEnter {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px) scale(0.98); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        .card-animate {
+            animation: cardEnter 400ms var(--ease-out-quart) both;
+        }
+        
+        /* Staggered cards */
+        .stagger-1 { animation-delay: 0ms; }
+        .stagger-2 { animation-delay: 50ms; }
+        .stagger-3 { animation-delay: 100ms; }
+        
+        /* Button press feel */
+        .btn-press {
+            transition: transform 100ms ease;
+        }
+        .btn-press:active {
+            transform: scale(0.97);
+        }
+        
+        /* Card hover lift */
+        .card-lift {
+            transition: transform 200ms var(--ease-out-quart), 
+                        box-shadow 200ms var(--ease-out-quart);
+        }
+        .card-lift:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(45, 42, 38, 0.15);
+        }
+        
+        /* Image parallax */
+        .parallax-img {
+            transition: transform 300ms var(--ease-out-quart);
+        }
+        .parallax-container:hover .parallax-img {
+            transform: scale(1.05);
+        }
+        
+        /* Navigation smooth */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #7a9e7e;
+            transition: width 200ms var(--ease-out-quart);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .parallax-container:hover .parallax-img {
+                transform: none;
+            }
+            
+            .card-lift:hover {
+                transform: none;
+            }
+        }
+        
+        /* Scroll-triggered animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 500ms var(--ease-out-quart),
+                        transform 500ms var(--ease-out-quart);
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Grain texture overlay */
+        .grain::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="font-body text-sand-700 antialiased grain">
+    
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-sage-500 focus:text-white focus:px-4 focus:py-2 focus:rounded">
+        Aller au contenu principal
+    </a>
+    
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar" role="navigation" aria-label="Navigation principale">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-display text-2xl font-semibold text-sand-700" aria-label="Alcova - Accueil">
+                ALCOVA
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#espaces" class="nav-link text-sand-600 hover:text-sage-600 transition-colors text-sm tracking-wide">
+                    Espaces
+                </a>
+                <a href="#activites" class="nav-link text-sand-600 hover:text-sage-600 transition-colors text-sm tracking-wide">
+                    Activités
+                </a>
+                <a href="#localisation" class="nav-link text-sand-600 hover:text-sage-600 transition-colors text-sm tracking-wide">
+                    Localisation
+                </a>
+                <a href="#contact" class="btn-press bg-sage-500 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-sage-600 transition-colors">
+                    Réserver
+                </a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button 
+                class="md:hidden text-sand-700 p-2" 
+                onclick="toggleMobileMenu()"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+                aria-label="Menu de navigation"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-sand-50/95 backdrop-blur-sm border-t border-sand-200" role="menu">
+            <div class="px-6 py-6 space-y-4">
+                <a href="#espaces" class="block text-sand-600 hover:text-sage-600 py-2" role="menuitem">Espaces</a>
+                <a href="#activites" class="block text-sand-600 hover:text-sage-600 py-2" role="menuitem">Activités</a>
+                <a href="#localisation" class="block text-sand-600 hover:text-sage-600 py-2" role="menuitem">Localisation</a>
+                <a href="#contact" class="block btn-press bg-sage-500 text-white px-6 py-3 text-center rounded-full" role="menuitem">Réserver</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+        
+        <!-- HERO SECTION -->
+        <section class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-sand-100 via-sand-50 to-sand-200">
+            <!-- Background decorative elements -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-sage-400/10 rounded-full blur-3xl animate-hero animate-hero-delay-1"></div>
+                <div class="absolute bottom-20 right-10 w-96 h-96 bg-sand-300/30 rounded-full blur-3xl animate-hero animate-hero-delay-2"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+                <p class="text-sage-600 text-sm tracking-[0.3em] uppercase mb-6 animate-hero animate-hero-delay-1">
+                    Ham, Picardie
+                </p>
+                
+                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-light text-sand-700 mb-8 animate-hero animate-hero-delay-2">
+                    Ressourcez-vous
+                </h1>
+                
+                <p class="text-lg md:text-xl text-sand-500 max-w-2xl mx-auto mb-12 leading-relaxed animate-hero animate-hero-delay-3">
+                    Un lieu pour penser à l'essentiel. Retrouvez votre clarté mentale à 1h30 de Paris.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center animate-hero animate-hero-delay-4">
+                    <a href="#espaces" class="btn-press bg-sage-500 text-white px-8 py-4 rounded-full font-medium hover:bg-sage-600 transition-all hover:shadow-lg inline-flex items-center justify-center gap-2">
+                        <!-- Icon: Compass -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                        Découvrir les espaces
+                    </a>
+                    
+                    <a href="#contact" class="btn-press border-2 border-sand-400 text-sand-700 px-8 py-4 rounded-full font-medium hover:bg-sand-100 transition-all inline-flex items-center justify-center gap-2">
+                        <!-- Icon: Calendar -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        Réserver maintenant
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce" aria-hidden="true">
+                <svg class="w-6 h-6 text-sand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- ESPACES SECTION -->
+        <section id="espaces" class="py-24 bg-white" aria-labelledby="espaces-title">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 scroll-reveal">
+                    <p class="text-sage-600 text-sm tracking-[0.2em] uppercase mb-4">Les Espaces</p>
+                    <h2 id="espaces-title" class="font-display text-4xl md:text-5xl font-light text-sand-700">
+                        Conçus pour la réflexion
+                    </h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Salon Alyss -->
+                    <article class="card-lift card-animate stagger-1 bg-sand-50 rounded-3xl overflow-hidden scroll-reveal">
+                        <div class="parallax-container h-64 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=600&fit=crop&q=85"
+                                alt="Salon confortable avec canapé en velours et lumière naturelle"
+                                class="parallax-img w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <!-- Icon: Home -->
+                                <svg class="w-6 h-6 text-sage-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                                </svg>
+                                <h3 class="font-display text-2xl font-semibold text-sand-700">Salon Alyss</h3>
+                            </div>
+                            <p class="text-sand-500 leading-relaxed">
+                                Le carrefour des idées. Un espace authentique parfait pour les discussions profondes, une tasse de thé à la main.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Cuisine Commune -->
+                    <article class="card-lift card-animate stagger-2 bg-sand-50 rounded-3xl overflow-hidden scroll-reveal">
+                        <div class="parallax-container h-64 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&q=85"
+                                alt="Cuisine moderne et lumineuse avec îlot central"
+                                class="parallax-img w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <!-- Icon: Users -->
+                                <svg class="w-6 h-6 text-sage-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                                <h3 class="font-display text-2xl font-semibold text-sand-700">Cuisine Commune</h3>
+                            </div>
+                            <p class="text-sand-500 leading-relaxed">
+                                Le cœur vivant. Un espace de partage où les liens se tissent et les saveurs s'épanouissent.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Chambres -->
+                    <article class="card-lift card-animate stagger-3 bg-sand-50 rounded-3xl overflow-hidden scroll-reveal">
+                        <div class="parallax-container h-64 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&h=600&fit=crop&q=85"
+                                alt="Chambre minimaliste avec lit confortable et vue nature"
+                                class="parallax-img w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <!-- Icon: Moon -->
+                                <svg class="w-6 h-6 text-sage-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                                </svg>
+                                <h3 class="font-display text-2xl font-semibold text-sand-700">Chambres</h3>
+                            </div>
+                            <p class="text-sand-500 leading-relaxed">
+                                Des espaces calmes pour un repos réparateur. Simplicité et confort pour des nuits sereines.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTIVITES SECTION -->
+        <section id="activites" class="py-24 bg-sand-50" aria-labelledby="activites-title">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 scroll-reveal">
+                    <p class="text-sage-600 text-sm tracking-[0.2em] uppercase mb-4">À Proximité</p>
+                    <h2 id="activites-title" class="font-display text-4xl md:text-5xl font-light text-sand-700">
+                        Explorer les environs
+                    </h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Activity 1 -->
+                    <div class="card-lift bg-white p-6 rounded-2xl scroll-reveal">
+                        <div class="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center mb-4">
+                            <!-- Icon: Castle -->
+                            <svg class="w-6 h-6 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-sand-700 mb-2">Château de Ham</h4>
+                        <p class="text-sm text-sand-500">Vestiges médiévaux et histoire locale</p>
+                    </div>
+                    
+                    <!-- Activity 2 -->
+                    <div class="card-lift bg-white p-6 rounded-2xl scroll-reveal">
+                        <div class="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center mb-4">
+                            <!-- Icon: Bike -->
+                            <svg class="w-6 h-6 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="5.5" cy="17.5" r="3.5" stroke-width="1.5"/>
+                                <circle cx="18.5" cy="17.5" r="3.5" stroke-width="1.5"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 6l-2 5h4l2 5M5.5 17.5l4-8h3M9.5 9.5l3 0"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-sand-700 mb-2">Véloroute V30</h4>
+                        <p class="text-sm text-sand-500">Ham → Baie de Somme</p>
+                    </div>
+                    
+                    <!-- Activity 3 -->
+                    <div class="card-lift bg-white p-6 rounded-2xl scroll-reveal">
+                        <div class="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center mb-4">
+                            <!-- Icon: Water -->
+                            <svg class="w-6 h-6 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 11a2 2 0 11-4 0 2 2 0 014 0zM6.5 6.5a2 2 0 114 0 2 2 0 01-4 0zM13.5 6.5a2 2 0 114 0 2 2 0 01-4 0zM3 17.5a2 2 0 114 0 2 2 0 01-4 0zM17 17.5a2 2 0 114 0 2 2 0 01-4 0zM10 23a2 2 0 114 0 2 2 0 01-4 0z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-sand-700 mb-2">Base de Loisirs</h4>
+                        <p class="text-sm text-sand-500">Kayak, paddle, randonnée</p>
+                    </div>
+                    
+                    <!-- Activity 4 -->
+                    <div class="card-lift bg-white p-6 rounded-2xl scroll-reveal">
+                        <div class="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center mb-4">
+                            <!-- Icon: Fish -->
+                            <svg class="w-6 h-6 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3c-4 0-8 2-8 6 0 3 2.5 5 5 6l-2 3h10l-2-3c2.5-1 5-3 5-6 0-4-4-6-8-6z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-sand-700 mb-2">Domaine des Îles</h4>
+                        <p class="text-sm text-sand-500">Pêche nocturne en étangs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOCALISATION SECTION -->
+        <section id="localisation" class="py-24 bg-white" aria-labelledby="localisation-title">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-reveal">
+                        <p class="text-sage-600 text-sm tracking-[0.2em] uppercase mb-4">Localisation</p>
+                        <h2 id="localisation-title" class="font-display text-4xl md:text-5xl font-light text-sand-700 mb-6">
+                            Ham, Somme (80)
+                        </h2>
+                        <p class="text-sand-500 text-lg leading-relaxed mb-8">
+                            À 1h30 de Paris, Ham est une ville chargée d'histoire au cœur de la Picardie. 
+                            Un cadre préservé pour se déconnecter vraiment.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-sand-600">80400 Ham, Somme</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-sand-600">1h30 de Paris</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-3xl overflow-hidden shadow-2xl scroll-reveal">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d659496.415587541!2d3.058933!3d49.78309600000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e80e1490404427%3A0x413c47bf9f415723!2s80400%20Ham!5e0!3m2!1sfr!2sfr!4v1673953127623!5m2!1sfr!2sfr" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            title="Carte de localisation - Ham, Somme"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section id="contact" class="py-24 bg-sage-500" aria-labelledby="contact-title">
+            <div class="max-w-4xl mx-auto px-6 text-center scroll-reveal">
+                <h2 id="contact-title" class="font-display text-4xl md:text-5xl font-light text-white mb-6">
+                    Prêt à vous ressourcer ?
+                </h2>
+                <p class="text-sage-100 text-lg mb-10 max-w-2xl mx-auto">
+                    Réservez votre séjour et retrouvez votre clarté mentale.
+                </p>
+                
+                <a href="mailto:contact@alcova.me" class="btn-press inline-flex items-center gap-3 bg-white text-sage-600 px-10 py-4 rounded-full font-semibold hover:shadow-xl transition-all">
+                    <!-- Icon: Mail -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Contactez-nous
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-sand-800 text-sand-300 py-12" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="font-display text-2xl text-white">ALCOVA</span>
+                    <p class="text-sm mt-2">Ressourcez-vous</p>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/Alcova_officiel" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors inline-flex items-center gap-2">
+                        <!-- Icon: Instagram -->
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        Instagram
+                    </a>
+                    <a href="/cgv" class="hover:text-white transition-colors">CGV</a>
+                    <a href="/contact" class="hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-sand-700 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2026 Alcova. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const button = document.querySelector('[aria-controls="mobile-menu"]');
+            const isHidden = menu.classList.contains('hidden');
+            
+            menu.classList.toggle('hidden');
+            button.setAttribute('aria-expanded', isHidden);
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+            }
+        });
+        
+        // Scroll reveal with IntersectionObserver
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.querySelector('[aria-controls="mobile-menu"]').setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>

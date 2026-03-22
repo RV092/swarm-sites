@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcova — Ressourcez-vous</title>
+    <meta name="description" content="Un lieu pour se ressourcer. Ham, Picardie.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Instrument+Serif&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#f8f7f5',
+                        text: '#1a1a1a',
+                        muted: '#6b6b6b',
+                        accent: '#2d5a3d'
+                    },
+                    fontFamily: {
+                        'mono': ['DM Mono', 'monospace'],
+                        'serif': ['Instrument Serif', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        * { border-color: #1a1a1a; }
+    </style>
+</head>
+<body class="bg-bg text-text font-mono text-sm leading-relaxed">
+
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-bg border-b">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-serif text-xl">Alcova</span>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-muted hover:text-text transition-colors">About</a>
+                <a href="#spaces" class="text-muted hover:text-text transition-colors">Spaces</a>
+                <a href="#location" class="text-muted hover:text-text transition-colors">Location</a>
+                <a href="#contact" class="bg-text text-bg px-4 py-2 text-xs uppercase tracking-wider">Book</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="min-h-screen flex items-center border-b">
+        <div class="max-w-6xl mx-auto px-6 py-32 w-full">
+            <div class="max-w-2xl">
+                <p class="text-muted text-xs uppercase tracking-widest mb-6">[Ham, Picardie]</p>
+                <h1 class="font-serif text-5xl md:text-7xl leading-[0.95] mb-8">
+                    Ressourcez-<br>vous.
+                </h1>
+                <p class="text-muted text-base mb-10 max-w-md">
+                    Un lieu pour penser à l'essentiel.<br>
+                    À 1h30 de Paris.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#contact" class="bg-text text-bg px-8 py-3 text-xs uppercase tracking-wider hover:opacity-80 transition-opacity">
+                        Réserver →
+                    </a>
+                    <a href="#about" class="border px-8 py-3 text-xs uppercase tracking-wider hover:bg-text hover:text-bg transition-colors">
+                        En savoir plus
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="border-b">
+        <div class="max-w-6xl mx-auto px-6 py-24">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <p class="text-muted text-xs uppercase tracking-widest mb-4">[01]</p>
+                    <h2 class="font-serif text-3xl mb-6">Le concept</h2>
+                </div>
+                <div class="text-muted">
+                    <p class="mb-4">
+                        Alcova est un refuge. Un lieu conçu pour la déconnexion, la réflexion et la récupération mentale.
+                    </p>
+                    <p>
+                        Pas de spa. Pas de luxe superficiel. Juste le calme, des espaces pensés pour l'échange, et la nature picarde à portée de main.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPACES -->
+    <section id="spaces" class="border-b">
+        <div class="max-w-6xl mx-auto px-6 py-24">
+            <p class="text-muted text-xs uppercase tracking-widest mb-4">[02]</p>
+            <h2 class="font-serif text-3xl mb-12">Espaces</h2>
+            
+            <div class="divide-y">
+                <div class="py-8 grid md:grid-cols-3 gap-8 items-center">
+                    <div class="font-serif text-xl">Salon Alyss</div>
+                    <p class="text-muted md:col-span-2">
+                        Le carrefour des idées. Espace de discussion, thé et café à disposition.
+                    </p>
+                </div>
+                <div class="py-8 grid md:grid-cols-3 gap-8 items-center">
+                    <div class="font-serif text-xl">Cuisine Commune</div>
+                    <p class="text-muted md:col-span-2">
+                        Le cœur vivant. Tout équipée pour vos envies culinaires et moments de partage.
+                    </p>
+                </div>
+                <div class="py-8 grid md:grid-cols-3 gap-8 items-center">
+                    <div class="font-serif text-xl">Chambres</div>
+                    <p class="text-muted md:col-span-2">
+                        Simplicité et calme. Pour un repos profond et réparateur.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section class="border-b">
+        <div class="max-w-6xl mx-auto px-6 py-24">
+            <p class="text-muted text-xs uppercase tracking-widest mb-4">[03]</p>
+            <h2 class="font-serif text-3xl mb-12">À proximité</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="border p-6">
+                    <span class="text-xs text-muted">01</span>
+                    <h4 class="font-serif text-lg mt-2 mb-1">Château de Ham</h4>
+                    <p class="text-muted text-xs">Vestiges médiévaux</p>
+                </div>
+                <div class="border p-6">
+                    <span class="text-xs text-muted">02</span>
+                    <h4 class="font-serif text-lg mt-2 mb-1">Véloroute V30</h4>
+                    <p class="text-muted text-xs">→ Baie de Somme</p>
+                </div>
+                <div class="border p-6">
+                    <span class="text-xs text-muted">03</span>
+                    <h4 class="font-serif text-lg mt-2 mb-1">Base de Loisirs</h4>
+                    <p class="text-muted text-xs">Kayak, paddle</p>
+                </div>
+                <div class="border p-6">
+                    <span class="text-xs text-muted">04</span>
+                    <h4 class="font-serif text-lg mt-2 mb-1">Domaine des Îles</h4>
+                    <p class="text-muted text-xs">Pêche nocturne</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="location" class="border-b">
+        <div class="max-w-6xl mx-auto px-6 py-24">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-muted text-xs uppercase tracking-widest mb-4">[04]</p>
+                    <h2 class="font-serif text-3xl mb-6">Localisation</h2>
+                    <div class="space-y-4 text-muted">
+                        <p>
+                            <span class="text-text">80400 Ham</span><br>
+                            Somme, Picardie, France
+                        </p>
+                        <p>
+                            <span class="text-text">1h30</span> de Paris
+                        </p>
+                    </div>
+                </div>
+                <div class="border aspect-video">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d659496.415587541!2d3.058933!3d49.78309600000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e80e1490404427%3A0x413c47bf9f415723!2s80400%20Ham!5e0!3m2!1sfr!2sfr!4v1673953127623!5m2!1sfr!2sfr" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; filter: grayscale(1);" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="bg-text text-bg">
+        <div class="max-w-6xl mx-auto px-6 py-24 text-center">
+            <p class="text-bg/50 text-xs uppercase tracking-widest mb-4">[Contact]</p>
+            <h2 class="font-serif text-4xl md:text-5xl mb-8">
+                Prêt à vous ressourcer ?
+            </h2>
+            <p class="text-bg/70 mb-10 max-w-md mx-auto">
+                Réservez votre séjour.<br>
+                Retrouvez votre clarté.
+            </p>
+            <a href="mailto:contact@alcova.me" class="inline-block border border-bg px-10 py-4 text-xs uppercase tracking-wider hover:bg-bg hover:text-text transition-colors">
+                Contactez-nous →
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-bg border-t">
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <span class="font-serif">Alcova</span>
+                <div class="flex gap-6 text-xs text-muted">
+                    <a href="https://www.instagram.com/Alcova_officiel" target="_blank" class="hover:text-text transition-colors">Instagram</a>
+                    <a href="/cgv" class="hover:text-text transition-colors">CGV</a>
+                    <a href="/contact" class="hover:text-text transition-colors">Contact</a>
+                </div>
+                <span class="text-xs text-muted">© 2026</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

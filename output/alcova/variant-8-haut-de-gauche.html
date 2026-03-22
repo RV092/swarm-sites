@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALCOVA | Ressourcement d'Exception</title>
+    <meta name="description" content="L'art du ressourcement. Un lieu unique à Ham, Picardie.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#1a1f2e',
+                            950: '#0a0d14',
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#c5a028',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Instrument Serif', 'serif'],
+                        'body': ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes slideFromLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideFromRight {
+            from { opacity: 0; transform: translateX(60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-left { animation: slideFromLeft 800ms var(--ease-smooth) both; }
+        .slide-right { animation: slideFromRight 800ms var(--ease-smooth) both; }
+        .fade-in { animation: fadeIn 1000ms var(--ease-smooth) both; }
+        
+        .delay-1 { animation-delay: 200ms; }
+        .delay-2 { animation-delay: 400ms; }
+        .delay-3 { animation-delay: 600ms; }
+        .delay-4 { animation-delay: 800ms; }
+        
+        /* Split layout hover */
+        .split-hover {
+            transition: all 500ms var(--ease-smooth);
+        }
+        .split-hover:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 800ms var(--ease-smooth), transform 800ms var(--ease-smooth);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Asymmetric grid */
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .asymmetric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Line decorations */
+        .line-accent::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="font-body bg-slate-950 text-white">
+    
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-gold-400 focus:text-slate-950 focus:px-4 focus:py-2">
+        Skip to content
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-white/5" role="navigation">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
+            <a href="#" class="text-lg tracking-[0.3em] text-gold-400 font-display">
+                ALCOVA
+            </a>
+            
+            <div class="hidden md:flex items-center gap-10 text-xs tracking-widest uppercase">
+                <a href="#espaces" class="text-white/60 hover:text-white transition-colors">Espaces</a>
+                <a href="#experience" class="text-white/60 hover:text-white transition-colors">Expérience</a>
+                <a href="#contact" class="px-6 py-3 bg-gold-400 text-slate-950 font-semibold hover:bg-gold-500 transition-colors">
+                    Réserver
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+        
+        <!-- Hero - Split Screen -->
+        <section class="min-h-screen asymmetric-grid">
+            <!-- Left: Content -->
+            <div class="flex flex-col justify-center px-8 lg:px-16 py-32 bg-slate-950">
+                <div class="max-w-md">
+                    <p class="text-gold-400 text-xs tracking-[0.4em] uppercase mb-6 slide-left">
+                        Ham, Picardie
+                    </p>
+                    
+                    <h1 class="font-display text-5xl lg:text-6xl text-white mb-8 leading-tight slide-left delay-1">
+                        L'art du<br>
+                        <em class="text-gold-400">ressourcement</em>
+                    </h1>
+                    
+                    <p class="text-white/60 text-base leading-relaxed mb-10 slide-left delay-2">
+                        Un lieu où le temps suspend son vol. Où chaque détail a été pensé pour votre équilibre.
+                    </p>
+                    
+                    <div class="flex items-center gap-8 slide-left delay-3">
+                        <a href="#contact" class="group flex items-center gap-3 text-gold-400 text-sm tracking-wider">
+                            <span>Réserver</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="#espaces" class="text-white/40 text-sm tracking-wider hover:text-white transition-colors">
+                            Découvrir
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right: Image -->
+            <div class="relative overflow-hidden fade-in delay-2">
+                <img 
+                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&h=1200&fit=crop&q=85"
+                    alt="Intérieur luxueux avec lumière naturelle tamisée"
+                    class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-l from-transparent to-slate-950/50"></div>
+                
+                <!-- Floating stats -->
+                <div class="absolute bottom-12 left-12 right-12 flex gap-8 fade-in delay-4">
+                    <div class="bg-slate-950/80 backdrop-blur-sm px-6 py-4 border border-white/10">
+                        <div class="text-3xl font-display text-gold-400">5</div>
+                        <div class="text-xs text-white/50 tracking-wider">Espaces</div>
+                    </div>
+                    <div class="bg-slate-950/80 backdrop-blur-sm px-6 py-4 border border-white/10">
+                        <div class="text-3xl font-display text-gold-400">∞</div>
+                        <div class="text-xs text-white/50 tracking-wider">Sérénité</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Espaces - Horizontal scroll -->
+        <section id="espaces" class="py-32 bg-slate-950 border-t border-white/5" aria-labelledby="espaces-title">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="flex items-end justify-between mb-16 reveal">
+                    <div>
+                        <p class="text-gold-400 text-xs tracking-[0.3em] uppercase mb-4">01 — Espaces</p>
+                        <h2 id="espaces-title" class="font-display text-4xl lg:text-5xl text-white">
+                            Chaque espace,<br>
+                            <em class="text-white/60">une intention</em>
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Salon -->
+                    <article class="group split-hover border border-white/10 p-8 reveal">
+                        <div class="aspect-[3/4] mb-8 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=533&fit=crop&q=80"
+                                alt="Salon de réception haut de gamme"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl text-white mb-2">Salon Alyss</h3>
+                                <p class="text-white/50 text-sm">Espace de dialogue</p>
+                            </div>
+                            <span class="text-gold-400 text-xs tracking-wider">01</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Cuisine -->
+                    <article class="group split-hover border border-white/10 p-8 reveal">
+                        <div class="aspect-[3/4] mb-8 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1556909114-44e3e90034e2?w=400&h=533&fit=crop&q=80"
+                                alt="Cuisine design avec îlot central"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl text-white mb-2">Cuisine</h3>
+                                <p class="text-white/50 text-sm">Art de vivre</p>
+                            </div>
+                            <span class="text-gold-400 text-xs tracking-wider">02</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Chambres -->
+                    <article class="group split-hover border border-white/10 p-8 reveal">
+                        <div class="aspect-[3/4] mb-8 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&h=533&fit=crop&q=80"
+                                alt="Suite avec literie premium"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl text-white mb-2">Chambres</h3>
+                                <p class="text-white/50 text-sm">Repos absolu</p>
+                            </div>
+                            <span class="text-gold-400 text-xs tracking-wider">03</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience - Full width image -->
+        <section id="experience" class="relative min-h-screen" aria-labelledby="experience-title">
+            <div class="absolute inset-0">
+                <img 
+                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop&q=85"
+                    alt="Vue panoramique de la campagne picarde au lever du soleil"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                />
+                <div class="absolute inset-0 bg-slate-950/70"></div>
+            </div>
+            
+            <div class="relative z-10 min-h-screen flex items-center">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+                    <div class="max-w-2xl">
+                        <p class="text-gold-400 text-xs tracking-[0.3em] uppercase mb-4 reveal">02 — Expérience</p>
+                        <h2 id="experience-title" class="font-display text-5xl lg:text-6xl text-white mb-8 reveal">
+                            La Picardie,<br>
+                            <em class="text-white/60"> terre de ressourcement</em>
+                        </h2>
+                        
+                        <div class="grid grid-cols-2 gap-8 mt-12">
+                            <div class="reveal">
+                                <div class="text-4xl font-display text-gold-400 mb-2">30+</div>
+                                <div class="text-white/50 text-sm">km de sentiers</div>
+                            </div>
+                            <div class="reveal">
+                                <div class="text-4xl font-display text-gold-400 mb-2">1h30</div>
+                                <div class="text-white/50 text-sm">de Paris</div>
+                            </div>
+                            <div class="reveal">
+                                <div class="text-4xl font-display text-gold-400 mb-2">5</div>
+                                <div class="text-white/50 text-sm">étangs privés</div>
+                            </div>
+                            <div class="reveal">
+                                <div class="text-4xl font-display text-gold-400 mb-2">∞</div>
+                                <div class="text-white/50 text-sm">silence</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA - Left aligned -->
+        <section id="contact" class="py-32 bg-slate-950 border-t border-white/5" aria-labelledby="contact-title">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="asymmetric-grid">
+                    <div class="flex flex-col justify-center reveal">
+                        <p class="text-gold-400 text-xs tracking-[0.3em] uppercase mb-4">Contact</p>
+                        <h2 id="contact-title" class="font-display text-4xl lg:text-5xl text-white mb-8">
+                            Réservez<br>
+                            <em class="text-white/60">votre séjour</em>
+                        </h2>
+                        
+                        <a href="mailto:contact@alcova.me" class="group inline-flex items-center gap-4 text-gold-400 text-lg">
+                            <span class="tracking-wider">contact@alcova.me</span>
+                            <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center justify-end reveal">
+                        <div class="text-right">
+                            <p class="text-white/40 text-sm mb-4">Ou par téléphone</p>
+                            <a href="tel:+33XXXXXXXX" class="text-2xl font-display text-white hover:text-gold-400 transition-colors">
+                                +33 X XX XX XX XX
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-950 border-t border-white/5" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-8">
+                    <span class="text-gold-400 tracking-[0.3em]">ALCOVA</span>
+                    <span class="text-white/20">|</span>
+                    <span class="text-white/40 text-xs tracking-wider">80400 Ham, France</span>
+                </div>
+                
+                <div class="flex items-center gap-8 text-xs tracking-wider">
+                    <a href="https://www.instagram.com/Alcova_officiel" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-white transition-colors">
+                        Instagram
+                    </a>
+                    <a href="/cgv" class="text-white/40 hover:text-white transition-colors">
+                        CGV
+                    </a>
+                    <a href="/mentions" class="text-white/40 hover:text-white transition-colors">
+                        Mentions légales
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-white/5 text-center text-white/30 text-xs">
+                &copy; 2026 Alcova. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

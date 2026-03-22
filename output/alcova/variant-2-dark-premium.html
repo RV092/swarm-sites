@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcova — Ressourcez-vous</title>
+    <meta name="description" content="Un lieu pour se ressourcer à Ham, en Picardie. Dark, premium, calme.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: {
+                            900: '#0a0a0a',
+                            800: '#121212',
+                            700: '#1a1a1a',
+                            600: '#222222',
+                            500: '#2a2a2a'
+                        },
+                        sage: {
+                            400: '#8fb896',
+                            500: '#7a9e7e',
+                            600: '#5c7a5f'
+                        },
+                        gold: {
+                            400: '#d4b896',
+                            500: '#c4a77d',
+                            600: '#a88d6a'
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Cormorant Garamond', 'serif'],
+                        'body': ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        .fade-in-delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .fade-in-delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .fade-in-delay-3 { animation-delay: 0.6s; opacity: 0; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glow {
+            box-shadow: 0 0 60px rgba(122, 158, 126, 0.15);
+        }
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .line-decoration::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, #7a9e7e, transparent);
+            margin-top: 1.5rem;
+        }
+        .gradient-border {
+            background: linear-gradient(135deg, rgba(122, 158, 126, 0.2), transparent);
+            padding: 1px;
+        }
+        .gradient-border-inner {
+            background: #121212;
+        }
+    </style>
+</head>
+<body class="bg-obsidian-900 text-gray-200 font-body antialiased">
+    
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-obsidian-900/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <a href="#" class="font-display text-xl tracking-[0.4em] text-white">ALCOVA</a>
+            <div class="hidden md:flex items-center space-x-12">
+                <a href="#espaces" class="text-gray-400 hover:text-sage-400 transition-colors text-sm tracking-wide">Espaces</a>
+                <a href="#activites" class="text-gray-400 hover:text-sage-400 transition-colors text-sm tracking-wide">Activités</a>
+                <a href="#lieu" class="text-gray-400 hover:text-sage-400 transition-colors text-sm tracking-wide">Le Lieu</a>
+                <a href="#contact" class="bg-sage-500 text-obsidian-900 px-6 py-2 text-sm font-medium hover:bg-sage-400 transition-colors">Réserver</a>
+            </div>
+            <button class="md:hidden text-gray-300" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-obsidian-800 border-t border-white/5">
+            <div class="px-8 py-6 space-y-4">
+                <a href="#espaces" class="block text-gray-400 hover:text-sage-400">Espaces</a>
+                <a href="#activites" class="block text-gray-400 hover:text-sage-400">Activités</a>
+                <a href="#lieu" class="block text-gray-400 hover:text-sage-400">Le Lieu</a>
+                <a href="#contact" class="block bg-sage-500 text-obsidian-900 px-6 py-3 text-center font-medium">Réserver</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-sage-500/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gold-500/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <p class="text-sage-400 text-xs tracking-[0.5em] uppercase mb-8 fade-in">Ham • Picardie • France</p>
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight fade-in fade-in-delay-1">
+                Ressourcez-vous
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto mb-12 leading-relaxed fade-in fade-in-delay-2">
+                Un refuge à 1h30 de Paris pour penser à l'essentiel.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in fade-in-delay-3">
+                <a href="#contact" class="bg-sage-500 text-obsidian-900 px-10 py-4 font-medium hover:bg-sage-400 transition-all">
+                    Réserver maintenant
+                </a>
+                <a href="#espaces" class="border border-white/20 text-white px-10 py-4 font-medium hover:bg-white/5 transition-all">
+                    Découvrir
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2">
+            <div class="w-px h-16 bg-gradient-to-b from-transparent via-sage-500 to-transparent animate-pulse"></div>
+        </div>
+    </section>
+
+    <!-- ESPACES SECTION -->
+    <section id="espaces" class="py-32 bg-obsidian-800">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="mb-20">
+                <p class="text-sage-400 text-xs tracking-[0.4em] uppercase mb-4">Les Espaces</p>
+                <h2 class="font-display text-4xl md:text-5xl font-light text-white line-decoration">
+                    Conçus pour la clarté
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Salon Alyss -->
+                <div class="gradient-border card-hover">
+                    <div class="gradient-border-inner p-8">
+                        <div class="w-12 h-12 bg-sage-500/10 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl text-white mb-4">Salon Alyss</h3>
+                        <p class="text-gray-500 leading-relaxed text-sm">
+                            Le carrefour des idées. Un espace pour les discussions profondes, thé ou café à la main.
+                        </p>
+                        <div class="mt-6 pt-6 border-t border-white/5">
+                            <span class="text-sage-400 text-xs tracking-wider">RÉFLEXION</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cuisine Commune -->
+                <div class="gradient-border card-hover">
+                    <div class="gradient-border-inner p-8">
+                        <div class="w-12 h-12 bg-sage-500/10 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl text-white mb-4">Cuisine Commune</h3>
+                        <p class="text-gray-500 leading-relaxed text-sm">
+                            Le cœur vivant. Un espace de partage où les liens se tissent et les saveurs s'épanouissent.
+                        </p>
+                        <div class="mt-6 pt-6 border-t border-white/5">
+                            <span class="text-sage-400 text-xs tracking-wider">PARTAGE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chambres -->
+                <div class="gradient-border card-hover">
+                    <div class="gradient-border-inner p-8">
+                        <div class="w-12 h-12 bg-sage-500/10 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-2xl text-white mb-4">Chambres</h3>
+                        <p class="text-gray-500 leading-relaxed text-sm">
+                            Calme et simplicité. Des espaces pensés pour un repos profond et réparateur.
+                        </p>
+                        <div class="mt-6 pt-6 border-t border-white/5">
+                            <span class="text-sage-400 text-xs tracking-wider">REPOS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVITES SECTION -->
+    <section id="activites" class="py-32 bg-obsidian-900">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="mb-20">
+                <p class="text-sage-400 text-xs tracking-[0.4em] uppercase mb-4">À Proximité</p>
+                <h2 class="font-display text-4xl md:text-5xl font-light text-white line-decoration">
+                    Explorer
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-obsidian-700 p-8 card-hover border border-white/5">
+                    <div class="flex items-start gap-6">
+                        <span class="text-4xl">🏰</span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">Château de Ham</h4>
+                            <p class="text-gray-500 text-sm">Vestiges médiévaux et patrimoine historique</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-obsidian-700 p-8 card-hover border border-white/5">
+                    <div class="flex items-start gap-6">
+                        <span class="text-4xl">🚴</span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">Véloroute V30</h4>
+                            <p class="text-gray-500 text-sm">De Ham à la Baie de Somme</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-obsidian-700 p-8 card-hover border border-white/5">
+                    <div class="flex items-start gap-6">
+                        <span class="text-4xl">🛶</span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">Base de Loisirs</h4>
+                            <p class="text-gray-500 text-sm">Kayak, paddle, sentiers de randonnée</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-obsidian-700 p-8 card-hover border border-white/5">
+                    <div class="flex items-start gap-6">
+                        <span class="text-4xl">🎣</span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">Domaine des Îles</h4>
+                            <p class="text-gray-500 text-sm">Pêche nocturne en étangs de Picardie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALISATION SECTION -->
+    <section id="lieu" class="py-32 bg-obsidian-800">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-sage-400 text-xs tracking-[0.4em] uppercase mb-4">Localisation</p>
+                    <h2 class="font-display text-4xl md:text-5xl font-light text-white mb-8 line-decoration">
+                        Ham, Somme
+                    </h2>
+                    <p class="text-gray-400 leading-relaxed mb-10">
+                        À 1h30 de Paris, Ham est une ville chargée d'histoire au cœur de la Picardie. 
+                        Un cadre préservé pour se déconnecter vraiment.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 border border-sage-500/30 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">80400 Ham, Somme</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 border border-sage-500/30 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">1h30 de Paris</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-white/10 overflow-hidden">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d659496.415587541!2d3.058933!3d49.78309600000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e80e1490404427%3A0x413c47bf9f415723!2s80400%20Ham!5e0!3m2!1sfr!2sfr!4v1673953127623!5m2!1sfr!2sfr" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0; filter: grayscale(1) contrast(1.1);" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="contact" class="py-32 bg-obsidian-900 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sage-500/5 rounded-full blur-3xl"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-8 text-center">
+            <h2 class="font-display text-4xl md:text-6xl font-light text-white mb-8">
+                Prêt à vous ressourcer ?
+            </h2>
+            <p class="text-gray-400 text-lg mb-12">
+                Réservez votre séjour. Retrouvez votre clarté.
+            </p>
+            <a href="mailto:contact@alcova.me" class="inline-block bg-sage-500 text-obsidian-900 px-12 py-5 font-medium hover:bg-sage-400 transition-all glow">
+                Contactez-nous
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-obsidian-900 border-t border-white/5 py-16">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <span class="font-display text-xl tracking-[0.3em] text-white">ALCOVA</span>
+                    <p class="text-gray-600 text-sm mt-2">Ressourcez-vous</p>
+                </div>
+                <div class="flex items-center space-x-8 text-sm text-gray-500">
+                    <a href="https://www.instagram.com/Alcova_officiel" target="_blank" class="hover:text-sage-400 transition-colors">Instagram</a>
+                    <a href="/cgv" class="hover:text-sage-400 transition-colors">CGV</a>
+                    <a href="/contact" class="hover:text-sage-400 transition-colors">Contact</a>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/5 text-center text-gray-600 text-xs">
+                <p>&copy; 2026 Alcova. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

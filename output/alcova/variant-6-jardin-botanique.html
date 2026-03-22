@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcova — Votre jardin secret | Style Botanique</title>
+    <meta name="description" content="Un havre de paix à Ham, en Picardie. Retrouvez votre nature intérieure.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        earth: {
+                            100: '#faf5f0',
+                            200: '#e8ddd4',
+                            300: '#d4c4b5',
+                            400: '#a08070',
+                            500: '#6b5744',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Lato', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        @keyframes leafFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes growIn {
+            from { opacity: 0; transform: scale(0.8) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        
+        .leaf-float { animation: leafFloat 6s ease-in-out infinite; }
+        .leaf-float-delay { animation-delay: 2s; }
+        
+        .grow-in {
+            animation: growIn 700ms var(--ease-out-quart) both;
+        }
+        
+        .stagger-1 { animation-delay: 0ms; }
+        .stagger-2 { animation-delay: 100ms; }
+        .stagger-3 { animation-delay: 200ms; }
+        .stagger-4 { animation-delay: 300ms; }
+        
+        .card-grow {
+            transition: transform 300ms var(--ease-out-quart), box-shadow 300ms var(--ease-out-quart);
+        }
+        .card-grow:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(20, 83, 45, 0.25);
+        }
+        
+        .btn-organic {
+            transition: all 200ms var(--ease-out-quart);
+        }
+        .btn-organic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.4);
+        }
+        .btn-organic:active {
+            transform: scale(0.98);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 600ms var(--ease-out-quart), transform 600ms var(--ease-out-quart);
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        .botanical-border {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5C20 5 15 15 15 25c0 15 15 30 15 30s15-15 15-30c0-10-5-20-15-20z' fill='none' stroke='%2322c55e' stroke-width='0.5' opacity='0.3'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="font-body text-earth-500 bg-forest-50">
+    
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-forest-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-full">
+        Aller au contenu
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md" role="navigation" aria-label="Navigation principale">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <!-- Leaf icon -->
+                <svg class="w-8 h-8 text-forest-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l.29-.68a12.18 12.18 0 0 1 3-4.42A10.17 10.17 0 0 1 17 8m0-2a12.18 12.18 0 0 0-9 4.65A15.6 15.6 0 0 0 5.24 20l-.7 1.63a1 1 0 0 0 .52 1.28 1 1 1 0 0 0 .38.09 1 1 0 0 0 .92-.61L7.28 21A10.62 10.62 0 0 1 17 14a1 1 0 0 0 0-2Z"/>
+                </svg>
+                <span class="font-display text-2xl font-semibold text-forest-800">Alcova</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#espaces" class="text-earth-500 hover:text-forest-700 transition-colors">Espaces</a>
+                <a href="#nature" class="text-earth-500 hover:text-forest-700 transition-colors">Nature</a>
+                <a href="#contact" class="btn-organic bg-forest-600 text-white px-6 py-2.5 rounded-full font-medium">
+                    Réserver
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+        
+        <!-- Hero - Botanical -->
+        <section class="min-h-screen flex items-center justify-center relative overflow-hidden botanical-border">
+            <!-- Floating leaves -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+                <svg class="absolute top-20 left-10 w-12 h-12 text-forest-300 leaf-float" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l.29-.68a12.18 12.18 0 0 1 3-4.42A10.17 10.17 0 0 1 17 8"/>
+                </svg>
+                <svg class="absolute top-40 right-20 w-8 h-8 text-forest-400 leaf-float leaf-float-delay" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l.29-.68a12.18 12.18 0 0 1 3-4.42A10.17 10.17 0 0 1 17 8"/>
+                </svg>
+                <svg class="absolute bottom-32 left-1/4 w-10 h-10 text-forest-200 leaf-float" viewBox="0 0 24 24" fill="currentColor" style="animation-delay: 4s;">
+                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l.29-.68a12.18 12.18 0 0 1 3-4.42A10.17 10.17 0 0 1 17 8"/>
+                </svg>
+            </div>
+            
+            <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+                <div class="grow-in stagger-1">
+                    <span class="inline-flex items-center gap-2 bg-forest-100 text-forest-700 px-4 py-1.5 rounded-full text-sm mb-6">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Ham, Picardie
+                    </span>
+                </div>
+                
+                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-forest-900 mb-6 grow-in stagger-2">
+                    Votre jardin secret
+                </h1>
+                
+                <p class="text-xl text-earth-400 mb-10 leading-relaxed grow-in stagger-3">
+                    Un espace où nature et réflexion s'entremêlent. <br class="hidden md:block">
+                    Laissez vos pensées fleurir.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center grow-in stagger-4">
+                    <a href="#espaces" class="btn-organic inline-flex items-center justify-center gap-2 bg-forest-600 text-white px-8 py-4 rounded-full font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                        Découvrir
+                    </a>
+                    <a href="#contact" class="btn-organic inline-flex items-center justify-center gap-2 border-2 border-forest-600 text-forest-700 px-8 py-4 rounded-full font-medium hover:bg-forest-50">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Réserver
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Espaces - Cards with botanical imagery -->
+        <section id="espaces" class="py-24 bg-white" aria-labelledby="espaces-title">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16 scroll-reveal">
+                    <span class="text-forest-600 text-sm tracking-widest uppercase">Les Espaces</span>
+                    <h2 id="espaces-title" class="font-display text-4xl md:text-5xl font-semibold text-forest-900 mt-4">
+                        Cultivez vos idées
+                    </h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Salon -->
+                    <article class="card-grow bg-forest-50 rounded-3xl overflow-hidden scroll-reveal">
+                        <div class="h-56 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop&q=80"
+                                alt="Salon avec plantes et lumière naturelle"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 bg-forest-200 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-display text-xl font-semibold text-forest-900">Salon Alyss</h3>
+                            </div>
+                            <p class="text-earth-400 text-sm leading-relaxed">
+                                Un espace où les conversations prennent racine, au milieu des plantes et de la lumière.
+                            </p>
+                        </div>
+                    </article>
+                    
+                    <!-- Cuisine -->
+                    <article class="card-grow bg-forest-50 rounded-3xl overflow-hidden scroll-reveal">
+                        <div class="h-56 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1556909114-44e3e90034e2?w=600&h=400&fit=crop&q=80"
+                                alt="Cuisine avec herbes fraîches et vaisselle naturelle"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 bg-forest-200 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-display text-xl font-semibold text-forest-900">Cuisine Commune</h3>
+                            </div>
+                            <p class="text-earth-400 text-sm leading-relaxed">
+                                Le cœur nourricier. Herbes fraîches, produits locaux et partage autour de la table.
+                            </p>
+                        </div>
+                    </article>
+                    
+                    <!-- Chambres -->
+                    <article class="card-grow bg-forest-50 rounded-3xl overflow-hidden scroll-reveal">
+                        <div class="h-56 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&h=400&fit=crop&q=80"
+                                alt="Chambre minimaliste avec vue sur jardin"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 bg-forest-200 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-display text-xl font-semibold text-forest-900">Chambres</h3>
+                            </div>
+                            <p class="text-earth-400 text-sm leading-relaxed">
+                                Des cocons de sérénité. Matériaux naturels, silence et vue sur le jardin.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nature Section -->
+        <section id="nature" class="py-24 bg-forest-900 text-white" aria-labelledby="nature-title">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-reveal">
+                        <span class="text-forest-300 text-sm tracking-widest uppercase">Autour d'Alcova</span>
+                        <h2 id="nature-title" class="font-display text-4xl md:text-5xl font-semibold mt-4 mb-6">
+                            La nature à perte de vue
+                        </h2>
+                        <p class="text-forest-200 text-lg leading-relaxed mb-8">
+                            Nichée au cœur de la Picardie, Alcova vous offre un accès direct à des paysages préservés. 
+                            Forêts, étangs, chemins de traverse — chaque excursion est une invitation à la contemplation.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-forest-800/50 p-4 rounded-2xl">
+                                <div class="text-3xl font-display font-bold text-forest-300">30+</div>
+                                <div class="text-forest-400 text-sm">km de sentiers</div>
+                            </div>
+                            <div class="bg-forest-800/50 p-4 rounded-2xl">
+                                <div class="text-3xl font-display font-bold text-forest-300">5</div>
+                                <div class="text-forest-400 text-sm">étangs de pêche</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative scroll-reveal">
+                        <img 
+                            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&h=500&fit=crop&q=85"
+                            alt="Forêt de feuillus avec rayons de soleil filtrant"
+                            class="rounded-3xl shadow-2xl"
+                            loading="lazy"
+                        />
+                        <div class="absolute -bottom-6 -left-6 bg-white text-forest-900 p-6 rounded-2xl shadow-xl">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-8 h-8 text-forest-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold">Véloroute V30</div>
+                                    <div class="text-forest-600 text-sm">Ham → Baie de Somme</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="contact" class="py-24 bg-gradient-to-br from-forest-100 to-forest-50" aria-labelledby="contact-title">
+            <div class="max-w-3xl mx-auto px-6 text-center scroll-reveal">
+                <h2 id="contact-title" class="font-display text-4xl md:text-5xl font-semibold text-forest-900 mb-6">
+                    Prêt à vous ressourcer ?
+                </h2>
+                <p class="text-earth-400 text-lg mb-10">
+                    Réservez votre séjour au cœur de la nature picarde.
+                </p>
+                
+                <a href="mailto:contact@alcova.me" class="btn-organic inline-flex items-center gap-3 bg-forest-700 text-white px-10 py-4 rounded-full font-semibold text-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Contactez-nous
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-forest-950 text-forest-300 py-12" role="contentinfo">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l.29-.68a12.18 12.18 0 0 1 3-4.42A10.17 10.17 0 0 1 17 8"/>
+                    </svg>
+                    <span class="font-display text-lg">Alcova</span>
+                </div>
+                
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="https://www.instagram.com/Alcova_officiel" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        Instagram
+                    </a>
+                    <a href="/cgv" class="hover:text-white transition-colors">CGV</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-forest-800 mt-8 pt-8 text-center text-sm text-forest-500">
+                <p>&copy; 2026 Alcova. Cultivé avec soin.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>

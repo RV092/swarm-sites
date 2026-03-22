@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcova | Silence. Clarté. Ressourcement.</title>
+    <meta name="description" content="Un lieu de silence et de clarté à Ham, Picardie.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Noto Serif JP', 'serif'],
+                        'body': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        /* Minimal animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 800ms var(--ease-out) both;
+        }
+        
+        .slide-up {
+            animation: slideUp 600ms var(--ease-out) both;
+        }
+        
+        .delay-1 { animation-delay: 200ms; }
+        .delay-2 { animation-delay: 400ms; }
+        .delay-3 { animation-delay: 600ms; }
+        
+        /* Subtle hover */
+        .link-underline {
+            position: relative;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: currentColor;
+            transition: width 300ms var(--ease-out);
+        }
+        .link-underline:hover::after {
+            width: 100%;
+        }
+        
+        /* Card minimal */
+        .card-minimal {
+            transition: transform 400ms var(--ease-out);
+        }
+        .card-minimal:hover {
+            transform: translateY(-4px);
+        }
+        
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Vertical text for Japanese aesthetic */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
+</head>
+<body class="font-body text-ink-700 bg-white">
+    
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-ink-900 focus:text-white focus:px-4 focus:py-2">
+        Aller au contenu
+    </a>
+    
+    <!-- Navigation - Ultra minimal -->
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-sm" role="navigation">
+        <div class="max-w-5xl mx-auto px-8 py-6 flex justify-between items-center">
+            <a href="#" class="font-display text-xl tracking-wide text-ink-900">
+                Alcova
+            </a>
+            
+            <div class="hidden md:flex items-center gap-12 text-sm">
+                <a href="#espaces" class="link-underline text-ink-500 hover:text-ink-900 transition-colors">Espaces</a>
+                <a href="#lieu" class="link-underline text-ink-500 hover:text-ink-900 transition-colors">Lieu</a>
+                <a href="#contact" class="text-ink-900 border border-ink-900 px-6 py-2 hover:bg-ink-900 hover:text-white transition-all">
+                    Réserver
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+        
+        <!-- Hero - Zen -->
+        <section class="min-h-screen flex items-center justify-center relative">
+            <!-- Decorative vertical text -->
+            <div class="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block vertical-text text-ink-300 text-xs tracking-widest fade-in" aria-hidden="true">
+                Ressourcement • Picardie • 2026
+            </div>
+            
+            <div class="text-center px-6 max-w-2xl mx-auto">
+                <p class="text-ink-400 text-xs tracking-[0.4em] uppercase mb-8 fade-in">
+                    Ham, Somme
+                </p>
+                
+                <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extralight text-ink-900 mb-8 leading-tight fade-in delay-1">
+                    Le silence<br>
+                    <span class="font-light">comme ressource</span>
+                </h1>
+                
+                <p class="text-ink-500 text-base leading-relaxed mb-12 max-w-md mx-auto fade-in delay-2">
+                    Un lieu pour penser. Pour se taire. Pour entendre ce qui compte vraiment.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center fade-in delay-3">
+                    <a href="#espaces" class="text-sm text-ink-600 hover:text-ink-900 transition-colors link-underline">
+                        Découvrir les espaces
+                    </a>
+                    <span class="text-ink-300 hidden sm:block">|</span>
+                    <a href="#contact" class="text-sm text-ink-600 hover:text-ink-900 transition-colors link-underline">
+                        Réserver
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 fade-in delay-3" aria-hidden="true">
+                <div class="w-px h-16 bg-gradient-to-b from-transparent via-ink-300 to-transparent"></div>
+            </div>
+        </section>
+
+        <!-- Espaces - Cards minimal -->
+        <section id="espaces" class="py-32 bg-ink-50" aria-labelledby="espaces-title">
+            <div class="max-w-5xl mx-auto px-8">
+                <div class="mb-20 reveal">
+                    <p class="text-ink-400 text-xs tracking-[0.3em] uppercase mb-4">01</p>
+                    <h2 id="espaces-title" class="font-display text-3xl md:text-4xl font-light text-ink-900">
+                        Les Espaces
+                    </h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-12">
+                    <!-- Salon -->
+                    <article class="reveal">
+                        <div class="aspect-[4/5] mb-6 overflow-hidden bg-ink-100">
+                            <img 
+                                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=500&h=625&fit=crop&q=80"
+                                alt="Salon épuré avec assises minimalistes"
+                                class="w-full h-full object-cover card-minimal"
+                                loading="lazy"
+                            />
+                        </div>
+                        <h3 class="font-display text-lg text-ink-800 mb-2">Salon Alyss</h3>
+                        <p class="text-ink-500 text-sm leading-relaxed">
+                            L'espace de dialogue. Simple, authentique.
+                        </p>
+                    </article>
+                    
+                    <!-- Cuisine -->
+                    <article class="reveal">
+                        <div class="aspect-[4/5] mb-6 overflow-hidden bg-ink-100">
+                            <img 
+                                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=625&fit=crop&q=80"
+                                alt="Cuisine minimaliste avec îlot central"
+                                class="w-full h-full object-cover card-minimal"
+                                loading="lazy"
+                            />
+                        </div>
+                        <h3 class="font-display text-lg text-ink-800 mb-2">Cuisine Commune</h3>
+                        <p class="text-ink-500 text-sm leading-relaxed">
+                            Le partage. La simplicité des repas ensemble.
+                        </p>
+                    </article>
+                    
+                    <!-- Chambres -->
+                    <article class="reveal">
+                        <div class="aspect-[4/5] mb-6 overflow-hidden bg-ink-100">
+                            <img 
+                                src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=500&h=625&fit=crop&q=80"
+                                alt="Chambre minimaliste au décor zen"
+                                class="w-full h-full object-cover card-minimal"
+                                loading="lazy"
+                            />
+                        </div>
+                        <h3 class="font-display text-lg text-ink-800 mb-2">Chambres</h3>
+                        <p class="text-ink-500 text-sm leading-relaxed">
+                            Le repos. Rien de superflu.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lieu -->
+        <section id="lieu" class="py-32 bg-white" aria-labelledby="lieu-title">
+            <div class="max-w-5xl mx-auto px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <p class="text-ink-400 text-xs tracking-[0.3em] uppercase mb-4">02</p>
+                        <h2 id="lieu-title" class="font-display text-3xl md:text-4xl font-light text-ink-900 mb-8">
+                            Ham, Somme
+                        </h2>
+                        
+                        <div class="space-y-6 text-ink-600 leading-relaxed">
+                            <p>
+                                À 1h30 de Paris, une ville chargée d'histoire au cœur de la Picardie.
+                            </p>
+                            <p>
+                                Un cadre préservé où le temps s'écoule autrement.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-12 grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="text-3xl font-display text-ink-900 mb-1">1h30</div>
+                                <div class="text-xs text-ink-400 tracking-wide">de Paris</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-display text-ink-900 mb-1">80400</div>
+                                <div class="text-xs text-ink-400 tracking-wide">Ham, Somme</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reveal">
+                        <div class="aspect-square bg-ink-100 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop&q=85"
+                                alt="Vue aérienne de la campagne picarde"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA - Minimal -->
+        <section id="contact" class="py-32 bg-ink-900 text-white" aria-labelledby="contact-title">
+            <div class="max-w-xl mx-auto px-8 text-center reveal">
+                <h2 id="contact-title" class="font-display text-3xl md:text-4xl font-light mb-8">
+                    Prendre rendez-vous
+                </h2>
+                
+                <p class="text-ink-400 mb-12 text-sm leading-relaxed">
+                    Un premier échange pour comprendre vos besoins.
+                </p>
+                
+                <a href="mailto:contact@alcova.me" class="inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-sm hover:bg-white hover:text-ink-900 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    contact@alcova.me
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer - Minimal -->
+    <footer class="py-12 bg-ink-950 text-ink-500" role="contentinfo">
+        <div class="max-w-5xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs">
+                <p>&copy; 2026 Alcova</p>
+                
+                <div class="flex items-center gap-8">
+                    <a href="https://www.instagram.com/Alcova_officiel" target="_blank" rel="noopener noreferrer" class="link-underline hover:text-white transition-colors">
+                        Instagram
+                    </a>
+                    <a href="/cgv" class="link-underline hover:text-white transition-colors">CGV</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

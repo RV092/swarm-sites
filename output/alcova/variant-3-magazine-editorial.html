@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcova — Ressourcez-vous | Ham, Picardie</title>
+    <meta name="description" content="Un lieu pour se ressourcer à Ham, en Picardie. Style magazine éditorial.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: {
+                            900: '#0f0f0f',
+                            800: '#1a1a1a',
+                            700: '#2a2a2a',
+                        },
+                        paper: {
+                            50: '#fefdfb',
+                            100: '#faf9f5',
+                            200: '#f5f3ed',
+                            300: '#ebe8df',
+                        },
+                        copper: {
+                            400: '#cd8b5f',
+                            500: '#c4784a',
+                            600: '#a8623a'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.618fr;
+            gap: 0;
+        }
+        @media (max-width: 768px) {
+            .editorial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .drop-cap::first-letter {
+            float: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 0.8;
+            padding-right: 0.5rem;
+            color: #c4784a;
+        }
+        .divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, #c4784a, transparent);
+        }
+        .article-card:hover .article-image {
+            transform: scale(1.03);
+        }
+        .article-image {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
+</head>
+<body class="bg-paper-50 text-ink-800 font-sans antialiased">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-paper-50/95 backdrop-blur-sm border-b border-ink-900/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-serif text-2xl tracking-tight text-ink-900">Alcova<span class="text-copper-500">.</span></a>
+            <nav class="hidden md:flex items-center space-x-10 text-sm tracking-wide">
+                <a href="#espaces" class="text-ink-700 hover:text-copper-500 transition-colors">Espaces</a>
+                <a href="#explorer" class="text-ink-700 hover:text-copper-500 transition-colors">Explorer</a>
+                <a href="#lieu" class="text-ink-700 hover:text-copper-500 transition-colors">Le Lieu</a>
+                <a href="#contact" class="bg-ink-900 text-paper-50 px-5 py-2 hover:bg-ink-800 transition-colors">Réserver</a>
+            </nav>
+            <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-paper-50 border-t border-ink-900/10">
+            <div class="px-6 py-6 space-y-4">
+                <a href="#espaces" class="block text-ink-700">Espaces</a>
+                <a href="#explorer" class="block text-ink-700">Explorer</a>
+                <a href="#lieu" class="block text-ink-700">Le Lieu</a>
+                <a href="#contact" class="block bg-ink-900 text-paper-50 px-5 py-3 text-center">Réserver</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO - MAGAZINE COVER -->
+    <section class="min-h-screen pt-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full">
+            <div class="editorial-grid items-center">
+                <div class="pr-8 md:pr-16 py-12">
+                    <p class="text-copper-500 text-xs tracking-[0.3em] uppercase mb-6">Édition Picardie</p>
+                    <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-medium text-ink-900 leading-[1.1] mb-8">
+                        La raison<br>
+                        pour laquelle<br>
+                        <span class="italic text-copper-500">vous devez</span><br>
+                        disparaître
+                    </h1>
+                    <div class="divider mb-8"></div>
+                    <p class="text-ink-700 text-lg leading-relaxed mb-8">
+                        Un refuge à Ham, en Picardie. À 1h30 de Paris, un lieu conçu pour retrouver votre clarté mentale.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#contact" class="bg-ink-900 text-paper-50 px-8 py-3 text-sm tracking-wide hover:bg-ink-800 transition-colors">
+                            Réserver
+                        </a>
+                        <a href="#espaces" class="border border-ink-900 text-ink-900 px-8 py-3 text-sm tracking-wide hover:bg-ink-900 hover:text-paper-50 transition-colors">
+                            Lire
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-paper-200 via-paper-100 to-paper-300 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="font-serif text-[200px] text-paper-300/50 select-none">A</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-ink-900/60 to-transparent">
+                            <p class="text-paper-50 font-serif text-2xl italic">"Ressourcez-vous"</p>
+                        </div>
+                    </div>
+                    <!-- Issue Info -->
+                    <div class="absolute -top-4 -right-4 bg-copper-500 text-paper-50 w-20 h-20 flex items-center justify-center">
+                        <span class="font-serif text-xs text-center leading-tight">N°<br>01</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPACES - ARTICLE GRID -->
+    <section id="espaces" class="py-24 bg-paper-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <p class="text-copper-500 text-xs tracking-[0.3em] uppercase mb-3">Section I</p>
+                <h2 class="font-serif text-4xl md:text-5xl text-ink-900">Les Espaces</h2>
+            </div>
+
+            <!-- Featured Article -->
+            <article class="article-card grid md:grid-cols-2 gap-0 mb-16 cursor-pointer group">
+                <div class="aspect-square md:aspect-auto overflow-hidden bg-paper-200">
+                    <div class="article-image w-full h-full bg-gradient-to-br from-copper-400/20 to-paper-300 flex items-center justify-center">
+                        <svg class="w-24 h-24 text-copper-500/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="bg-ink-900 text-paper-50 p-8 md:p-12 flex flex-col justify-center">
+                    <span class="text-copper-400 text-xs tracking-[0.3em] uppercase mb-4">Espace Principal</span>
+                    <h3 class="font-serif text-3xl md:text-4xl mb-6">Salon Alyss</h3>
+                    <p class="text-paper-300 leading-relaxed drop-cap">
+                        Le carrefour des idées. Un espace authentique parfait pour une rencontre intime ou une discussion animée. Alyss devient le théâtre de vos réflexions les plus lumineuses, une tasse de thé ou de café à la main.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article Grid -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <article class="article-card cursor-pointer group">
+                    <div class="aspect-video bg-paper-200 mb-6 overflow-hidden">
+                        <div class="article-image w-full h-full bg-gradient-to-r from-paper-300 to-paper-200 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-ink-900/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="text-copper-500 text-xs tracking-[0.2em] uppercase">Espace</span>
+                    <h4 class="font-serif text-2xl text-ink-900 mt-2 mb-3 group-hover:text-copper-500 transition-colors">Cuisine Commune</h4>
+                    <p class="text-ink-600 text-sm leading-relaxed">
+                        Le cœur vivant du lieu. Un espace de partage où les liens se tissent et les saveurs s'épanouissent.
+                    </p>
+                </article>
+
+                <article class="article-card cursor-pointer group">
+                    <div class="aspect-video bg-paper-200 mb-6 overflow-hidden">
+                        <div class="article-image w-full h-full bg-gradient-to-r from-paper-200 to-paper-300 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-ink-900/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="text-copper-500 text-xs tracking-[0.2em] uppercase">Espace</span>
+                    <h4 class="font-serif text-2xl text-ink-900 mt-2 mb-3 group-hover:text-copper-500 transition-colors">Chambres</h4>
+                    <p class="text-ink-600 text-sm leading-relaxed">
+                        Calme et simplicité pour un repos profond. Chaque détail est pensé pour votre sérénité.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPLORER - LIST -->
+    <section id="explorer" class="py-24 bg-paper-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="mb-16 text-center">
+                <p class="text-copper-500 text-xs tracking-[0.3em] uppercase mb-3">Section II</p>
+                <h2 class="font-serif text-4xl md:text-5xl text-ink-900">Explorer</h2>
+            </div>
+
+            <div class="divide-y divide-ink-900/10">
+                <a href="#" class="block py-8 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-copper-500 text-xs tracking-[0.2em] uppercase">01</span>
+                            <h4 class="font-serif text-2xl text-ink-900 mt-2 group-hover:text-copper-500 transition-colors">Château de Ham</h4>
+                            <p class="text-ink-500 text-sm mt-2">Vestiges médiévaux et patrimoine historique local</p>
+                        </div>
+                        <span class="text-3xl">🏰</span>
+                    </div>
+                </a>
+
+                <a href="#" class="block py-8 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-copper-500 text-xs tracking-[0.2em] uppercase">02</span>
+                            <h4 class="font-serif text-2xl text-ink-900 mt-2 group-hover:text-copper-500 transition-colors">Véloroute V30</h4>
+                            <p class="text-ink-500 text-sm mt-2">De Ham à la Baie de Somme en vélo</p>
+                        </div>
+                        <span class="text-3xl">🚴</span>
+                    </div>
+                </a>
+
+                <a href="#" class="block py-8 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-copper-500 text-xs tracking-[0.2em] uppercase">03</span>
+                            <h4 class="font-serif text-2xl text-ink-900 mt-2 group-hover:text-copper-500 transition-colors">Base de Loisirs</h4>
+                            <p class="text-ink-500 text-sm mt-2">Kayak, paddle, randonnée et détente</p>
+                        </div>
+                        <span class="text-3xl">🛶</span>
+                    </div>
+                </a>
+
+                <a href="#" class="block py-8 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-copper-500 text-xs tracking-[0.2em] uppercase">04</span>
+                            <h4 class="font-serif text-2xl text-ink-900 mt-2 group-hover:text-copper-500 transition-colors">Domaine des Îles</h4>
+                            <p class="text-ink-500 text-sm mt-2">Pêche nocturne en étangs de Picardie</p>
+                        </div>
+                        <span class="text-3xl">🎣</span>
+                    </div>
+                </a>
+
+                <a href="#" class="block py-8 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-copper-500 text-xs tracking-[0.2em] uppercase">05</span>
+                            <h4 class="font-serif text-2xl text-ink-900 mt-2 group-hover:text-copper-500 transition-colors">Canal de la Somme</h4>
+                            <p class="text-ink-500 text-sm mt-2">Promenades en bateau ou à vélo</p>
+                        </div>
+                        <span class="text-3xl">🌊</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIEU - FULL WIDTH -->
+    <section id="lieu" class="py-24 bg-ink-900 text-paper-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-copper-400 text-xs tracking-[0.3em] uppercase mb-6">Section III — Le Lieu</p>
+                    <h2 class="font-serif text-5xl md:text-6xl font-medium mb-8 leading-tight">
+                        Ham,<br>
+                        <span class="text-paper-400">Picardie</span>
+                    </h2>
+                    <div class="divider mb-8 bg-paper-50/30"></div>
+                    <p class="text-paper-300 text-lg leading-relaxed mb-8">
+                        À 1h30 de Paris, Ham est une ville chargée d'histoire au cœur de la Picardie. Église du XVIe siècle, château médiéval, musée d'art et d'histoire locale — chaque rue raconte une histoire.
+                    </p>
+                    <div class="flex gap-12">
+                        <div>
+                            <span class="font-serif text-4xl text-copper-400">1h30</span>
+                            <p class="text-paper-500 text-sm mt-1">de Paris</p>
+                        </div>
+                        <div>
+                            <span class="font-serif text-4xl text-copper-400">80</span>
+                            <p class="text-paper-500 text-sm mt-1">Somme</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square bg-paper-100 overflow-hidden">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d659496.415587541!2d3.058933!3d49.78309600000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e80e1490404427%3A0x413c47bf9f415723!2s80400%20Ham!5e0!3m2!1sfr!2sfr!4v1673953127623!5m2!1sfr!2sfr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: grayscale(1) contrast(1.2);" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-copper-500 p-6">
+                        <p class="text-paper-50 font-serif text-lg">80400 Ham</p>
+                        <p class="text-paper-100 text-sm">Somme, France</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA - EDITORIAL -->
+    <section id="contact" class="py-32 bg-paper-100">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <p class="text-copper-500 text-xs tracking-[0.3em] uppercase mb-6">Conclusion</p>
+            <h2 class="font-serif text-4xl md:text-6xl text-ink-900 mb-8 leading-tight">
+                Prêt à écrire<br>la suite ?
+            </h2>
+            <p class="text-ink-600 text-lg mb-12">
+                Réservez votre séjour. Retrouvez votre clarté.
+            </p>
+            <a href="mailto:contact@alcova.me" class="inline-block bg-ink-900 text-paper-50 px-12 py-5 text-sm tracking-wide hover:bg-ink-800 transition-colors">
+                Contactez-nous
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER - EDITORIAL -->
+    <footer class="bg-ink-900 text-paper-300 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <span class="font-serif text-2xl text-paper-50">Alcova<span class="text-copper-500">.</span></span>
+                    <p class="text-paper-500 text-sm mt-4">Ressourcez-vous</p>
+                </div>
+                <div>
+                    <p class="text-xs tracking-[0.2em] uppercase text-paper-500 mb-4">Navigation</p>
+                    <div class="space-y-2">
+                        <a href="#espaces" class="block hover:text-copper-400 transition-colors">Espaces</a>
+                        <a href="#explorer" class="block hover:text-copper-400 transition-colors">Explorer</a>
+                        <a href="#lieu" class="block hover:text-copper-400 transition-colors">Le Lieu</a>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-xs tracking-[0.2em] uppercase text-paper-500 mb-4">Contact</p>
+                    <div class="space-y-2">
+                        <a href="https://www.instagram.com/Alcova_officiel" target="_blank" class="block hover:text-copper-400 transition-colors">Instagram</a>
+                        <a href="/contact" class="block hover:text-copper-400 transition-colors">Email</a>
+                        <a href="/cgv" class="block hover:text-copper-400 transition-colors">CGV</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-paper-500/20 pt-8 text-center text-paper-600 text-xs">
+                <p>&copy; 2026 Alcova. Tous droits réservés. — Édition N°01</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
